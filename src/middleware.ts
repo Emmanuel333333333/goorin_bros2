@@ -1,22 +1,19 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isPublicRoute = createRouteMatcher([
-  '/',
-  '/sign-in(.*)',
-  '/sign-up(.*)',
-])
+  "/",
+  "/sign-in(.*)",
+  "/sign-up(.*)"
+]);
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isPublicRoute(req)) return
+export default clerkMiddleware((auth, req) => {
+  // rutas públicas
+  if (isPublicRoute(req)) return;
 
-  // Aquí SÍ se puede usar protect como función
-  await auth().protect()
-})
+  // proteger rutas privadas
+  auth().protect(); // ya no se usa await aquí ni devuelve promesa
+});
 
 export const config = {
-  matcher: [
-    '/((?!_next|.*\\..*).*)',
-    '/',
-    '/(api|trpc)(.*)',
-  ],
-}
+  matcher: ["/((?!_next|.*\\..*).*)", "/(api|trpc)(.*)"],
+};

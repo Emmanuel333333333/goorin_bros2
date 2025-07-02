@@ -32,7 +32,7 @@ const products = await prisma.product.findMany();
           Más Vendidos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {products.map((product) => (
+          {((product) => (
             <div key={product.id} className="text-center shadow rounded p-4">
               <Image
                 src={product.image}
