@@ -1,29 +1,20 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
 const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: 'Aplicación Multi-Página',
-  description: 'Aplicación con múltiples páginas y layouts en Next.js',
+  title: "Tienda Oficial Colombia - Gorras Premium",
+  description: "Compra gorras originales y premium con envío gratis. La mejor selección de gorras beisboleras y urbanas en Colombia.",
 };
 
 export default function RootLayout({
@@ -32,55 +23,67 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider>
-      <html lang="es">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50`}>
-          
-          {/* Si NO ha iniciado sesión, mostrar solo los botones */}
-          <SignedOut>
-            <div className="flex flex-col justify-center items-center h-screen text-center gap-4">
-              <h1 className="text-2xl font-semibold">Bienvenido a Mi App</h1>
-              <p className="text-gray-600 mb-4">Inicia sesión o regístrate para continuar</p>
-              <div className="flex gap-4">
-                <SignInButton mode="modal">
-                  <button className="bg-indigo-700 text-white px-4 py-2 rounded hover:bg-indigo-800">
-                    Iniciar sesión
-                  </button>
-                </SignInButton>
-                <SignUpButton mode="modal">
-                  <button className="bg-white text-indigo-700 border border-indigo-700 px-4 py-2 rounded hover:bg-indigo-100">
-                    Registrarse
-                  </button>
-                </SignUpButton>
+    <html lang="es">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50`}
+      >
+        {children}
+        
+        <footer className="bg-gray-900 text-white py-12">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
+                    <span className="text-black font-bold">👑</span>
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm">TIENDA OFICIAL</div>
+                    <div className="font-bold text-sm">COLOMBIA</div>
+                  </div>
+                </div>
+                <p className="text-gray-400 text-sm">
+                  La mejor tienda de gorras premium en Colombia. Calidad garantizada.
+                </p>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold mb-4">Navegación</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li><a href="/inicio" className="hover:text-white">Inicio</a></li>
+                  <li><a href="/productos" className="hover:text-white">Productos</a></li>
+                  <li><a href="/nuevos" className="hover:text-white">Nuevos Ingresos</a></li>
+                  <li><a href="/limitadas" className="hover:text-white">Ediciones Limitadas</a></li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold mb-4">Atención al Cliente</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li>📱 WhatsApp: 311 894 5864</li>
+                  <li>📧 contacto@tiendaoficial.com</li>
+                  <li>📍 Envíos a todo Colombia</li>
+                  <li>🚚 Envío gratis +$200.000</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="font-semibold mb-4">Métodos de Pago</h4>
+                <ul className="space-y-2 text-sm text-gray-400">
+                  <li>💳 Tarjeta débito/crédito</li>
+                  <li>🏦 PSE - Transferencia</li>
+                  <li>📱 Nequi</li>
+                  <li>🏧 Bancolombia</li>
+                </ul>
               </div>
             </div>
-          </SignedOut>
-
-          {/* Si ha iniciado sesión, mostrar la app completa */}
-          <SignedIn>
-            <header className="bg-indigo-700 text-white p-4 shadow-md">
-              <nav className="max-w-5xl mx-auto flex justify-between items-center">
-                <h1 className="text-2xl font-bold">Mi App</h1>
-                <div className="space-x-4 flex items-center">
-                  <Link href="/" className="hover:text-indigo-200">Inicio</Link>
-                  <Link href="/about" className="hover:text-indigo-200">Acerca</Link>
-                  <Link href="/services" className="hover:text-indigo-200">Servicios</Link>
-                  <Link href="/contact" className="hover:text-indigo-200">Contacto</Link>
-                  <Link href="/blog" className="hover:text-indigo-200">Blog</Link>
-                  <UserButton afterSignOutUrl="/" />
-                </div>
-              </nav>
-            </header>
-
-            <main className="max-w-5xl mx-auto p-6">{children}</main>
-
-            <footer className="bg-gray-800 text-white p-4 text-center">
-              <p>&copy; 2025 Mi App. Todos los derechos reservados.</p>
-            </footer>
-          </SignedIn>
-
-        </body>
-      </html>
-    </ClerkProvider>
+            
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+              © 2025 Tienda Oficial Colombia. Todos los derechos reservados.
+            </div>
+          </div>
+        </footer>
+      </body>
+    </html>
   );
 }
