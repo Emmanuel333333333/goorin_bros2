@@ -1,4 +1,6 @@
+import {ClerkProvider} from "@clerk/nextjs";
 import type { Metadata } from "next";
+import Navbar from "@/components/navbar";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -23,10 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <ClerkProvider> 
     <html lang="es">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50`}
       >
+        <Navbar /> {/* <-- AQUÍ */}
         {children}
         
         <footer className="bg-gray-900 text-white py-12">
@@ -85,5 +89,6 @@ export default function RootLayout({
         </footer>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

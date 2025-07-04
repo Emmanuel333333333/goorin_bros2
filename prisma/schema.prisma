@@ -33,28 +33,3 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
-model Cart {
-  id     String     @id @default(cuid())
-  userId String
-  items  CartItem[]
-}
-
-model CartItem {
-  id        String   @id @default(cuid())
-  cartId    String
-  productId String
-  quantity  Int      @default(1)
-  cart      Cart     @relation(fields: [cartId], references: [id])
-  product   Product  @relation(fields: [productId], references: [id])
-}
-
-model Product {
-  id        String   @id @default(cuid())
-  name      String
-  price     Int
-  image     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  cartItems CartItem[]
-}

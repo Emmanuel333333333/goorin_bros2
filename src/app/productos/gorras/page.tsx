@@ -1,33 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-const nuevosIngresos = [
+const gorras = [
   {
-    image: "/gorras/101-0388-onx-9d49f6f6b94a7736f517201962375757-640-0.jpg",
-    alt: "Gorra 1",
-  },
-  {
-    image: "/gorras/101-0864-cre-f011-5e2c2b0ddce4434b3616822179987232-1024-1024.jpg",
-    alt: "Gorra 2",
-  },
-  {
-    image: "/gorras/101-0996-red-f01-72987587995d9d42cf17170303949429-480-0.jpg",
-    alt: "Gorra 3",
-  },
-  {
-    image: "/gorras/101-1013-whi-f011-73bd83fa8dcca3dca916812535329995-480-0.jpg",
-    alt: "Gorra 4",
-  },
-];
-
-const hats = [
-  {
+    id: 1,
     name: "THE LION KING - BLACK",
     price: 299000,
     originalPrice: 320000,
@@ -36,132 +16,159 @@ const hats = [
     freeShipping: true,
   },
   {
+    id: 2,
     name: "THE STALLION CABALLO- SNOW",
     price: 259000,
-    image:
-      "/gorras/101-0864-cre-f011-5e2c2b0ddce4434b3616822179987232-1024-1024.jpg",
+    image: "/gorras/101-0864-cre-f011-5e2c2b0ddce4434b3616822179987232-1024-1024.jpg",
     badge: "NUEVO",
     freeShipping: true,
   },
   {
+    id: 3,
     name: "THE COCK - RED",
     price: 225000,
-    image:
-      "/gorras/101-0996-red-f01-72987587995d9d42cf17170303949429-480-0.jpg",
+    image: "/gorras/101-0996-red-f01-72987587995d9d42cf17170303949429-480-0.jpg",
     freeShipping: true,
   },
   {
+    id: 4,
     name: "THE WHITE CAT - WHITE",
     price: 259000,
-    image:
-      "/gorras/101-1013-whi-f011-73bd83fa8dcca3dca916812535329995-480-0.jpg",
+    image: "/gorras/101-1013-whi-f011-73bd83fa8dcca3dca916812535329995-480-0.jpg",
     freeShipping: true,
   },
   {
+    id: 5,
     name: "THE CACHO - SNOW",
     price: 340000,
-    image:
-      "/gorras/101-1106-whi-f01-eaadae6f8e2f72253717242694631247-480-0.jpg",
+    image: "/gorras/101-1106-whi-f01-eaadae6f8e2f72253717242694631247-480-0.jpg",
     badge: "NUEVO",
     freeShipping: true,
   },
   {
+    id: 6,
     name: "THE COCK - GREEN MILITAR",
     price: 350000,
-    image:
-      "/gorras/101-1455-mos-f01-0ea8cf2066ad79f9c317242712014591-480-0.jpg",
+    image: "/gorras/101-1455-mos-f01-0ea8cf2066ad79f9c317242712014591-480-0.jpg",
     freeShipping: true,
   },
   {
-    name: "THE WARDOG - BROWN ",
+    id: 7,
+    name: "THE WARDOG - BROWN",
     price: 315000,
-    image:
-      "/gorras/101-1784-bro-f01-322671d22c8dcf3b4e17315363269089-480-0.webp",
+    image: "/gorras/101-1784-bro-f01-322671d22c8dcf3b4e17315363269089-480-0.webp",
     freeShipping: true,
   },
   {
+    id: 8,
     name: "THE WHITE PANTHER - SNOW",
     price: 275000,
-    image:
-      "/gorras/201-0066-whi-f01-8021f43bb998375fff17425731422415-640-0.jpg",
+    image: "/gorras/201-0066-whi-f01-8021f43bb998375fff17425731422415-640-0.jpg",
+    freeShipping: true,
+  },
+  {
+    id: 9,
+    name: "THE CLASSIC CAP - NAVY",
+    price: 240000,
+    image: "/gorras/101-0588-blu-f011-1adcbdf458ebacd3bd16732218304805-640-0.jpg",
+    freeShipping: true,
+  },
+  {
+    id: 10,
+    name: "THE URBAN STYLE - GREY",
+    price: 280000,
+    image: "/gorras/101-1034-blu-f011-fea2e26f9ba11a945616834737455569-640-0.jpg",
+    badge: "POPULAR",
+    freeShipping: true,
+  },
+  {
+    id: 11,
+    name: "THE VINTAGE TRUCKER - BROWN",
+    price: 295000,
+    image: "/gorras/101-1108-blk-f011-e51e829f342a6246a916943574723869-640-0.jpg",
+    freeShipping: true,
+  },
+  {
+    id: 12,
+    name: "THE STREET KING - BLACK",
+    price: 320000,
+    image: "/gorras/101-1668-pin-f-03269d4c6a6c29211617235600628130-640-0.jpg",
+    badge: "LIMITADO",
     freeShipping: true,
   },
 ];
 
-export default function Home() {
-  const [showChat, setShowChat] = useState(false);
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 }
-      },
-      {
-        breakpoint: 640,
-        settings: { slidesToShow: 1 }
-      }
-    ]
-  };
-
+export default function GorrasPage() {
+    const [showChat, setShowChat] = useState(false);
+    
   return (
     <main className="min-h-screen bg-gray-50">
-      
-      {/* NUEVOS INGRESOS SLIDER */}
-      <section className="py-12 bg-yellow-200">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center mb-6">
-            <span className="font-black text-3xl mr-4">NUEVOS INGRESOS</span>
-          </div>
-          <Slider {...sliderSettings}>
-            {nuevosIngresos.map((item, idx) => (
-              <div key={idx} className="px-2">
-                <div className="rounded-lg overflow-hidden shadow-lg bg-white">
-                  <Image
-                    src={item.image}
-                    alt={item.alt}
-                    width={350}
-                    height={350}
-                    className="w-full h-72 object-cover"
-                  />
-                </div>
-              </div>
-            ))}
-          </Slider>
-          <div className="flex justify-center mt-8">
-            <a
-              href="/nuevosingresos"
-              className="bg-yellow-400 text-black font-extrabold text-2xl px-10 py-3 rounded shadow hover:bg-yellow-300 transition"
-            >
-              VER AQUÍ
-            </a>
+      {/* Header Section */}
+      <section className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+              👑 GORRAS PREMIUM 👑
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Descubre nuestra colección completa de gorras de la más alta calidad. 
+              Desde diseños clásicos hasta ediciones limitadas, encuentra tu estilo perfecto.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Featured Products Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Breadcrumb */}
+      <section className="bg-gray-100 py-3">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              ⭐ PRODUCTOS DESTACADOS ⭐
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Te mostramos los productos destacados de la marca. Puedes
-              encontrar todos los productos ingresando desde el menú principal.
-            </p>
-          </div>
+          <nav className="text-sm text-gray-600">
+            <Link href="/" className="hover:text-blue-600">Inicio</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-800 font-medium">Gorras</span>
+          </nav>
+        </div>
+      </section>
 
+      {/* Filter Section */}
+      <section className="bg-white py-6 border-b">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center space-x-4">
+              <span className="text-sm font-medium text-gray-700">Filtrar por:</span>
+              <select className="border border-gray-300 rounded px-3 py-1 text-sm">
+                <option>Todos los estilos</option>
+                <option>Clásicas</option>
+                <option>Snapback</option>
+                <option>Trucker</option>
+                <option>Dad Hat</option>
+              </select>
+              <select className="border border-gray-300 rounded px-3 py-1 text-sm">
+                <option>Todos los precios</option>
+                <option>$200,000 - $300,000</option>
+                <option>$300,000 - $400,000</option>
+                <option>Más de $400,000</option>
+              </select>
+            </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-600">{gorras.length} productos</span>
+              <select className="border border-gray-300 rounded px-3 py-1 text-sm">
+                <option>Ordenar por popularidad</option>
+                <option>Precio: menor a mayor</option>
+                <option>Precio: mayor a menor</option>
+                <option>Más recientes</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Products Grid */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {hats.map((hat, idx) => (
+            {gorras.map((gorra, idx) => (
               <motion.div
-                key={idx}
+                key={gorra.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -169,31 +176,29 @@ export default function Home() {
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden group"
               >
                 <div className="relative">
-                  {hat.badge && (
-                    <div
-                      className={`absolute top-2 left-2 px-2 py-1 text-xs font-bold rounded z-10 ${
-                        hat.badge === "40% OFF"
-                          ? "bg-yellow-400 text-black"
-                          : hat.badge === "2X1"
-                          ? "bg-yellow-400 text-black"
-                          : "bg-orange-500 text-white"
-                      }`}
-                    >
-                      {hat.badge}
+                  {gorra.badge && (
+                    <div className={`absolute top-2 left-2 px-2 py-1 text-xs font-bold rounded z-10 ${
+                      gorra.badge === "40% OFF" ? "bg-yellow-400 text-black" :
+                      gorra.badge === "NUEVO" ? "bg-orange-500 text-white" :
+                      gorra.badge === "POPULAR" ? "bg-blue-500 text-white" :
+                      gorra.badge === "LIMITADO" ? "bg-red-500 text-white" :
+                      "bg-gray-500 text-white"
+                    }`}>
+                      {gorra.badge}
                     </div>
                   )}
-
+                  
                   <div className="aspect-square relative overflow-hidden">
                     <Image
-                      src={hat.image}
-                      alt={hat.name}
+                      src={gorra.image}
+                      alt={gorra.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 768px) 100vw, 300px"
                     />
                   </div>
-
-                  {hat.freeShipping && (
+                  
+                  {gorra.freeShipping && (
                     <div className="absolute bottom-2 left-2 bg-black text-white text-xs px-2 py-1 rounded flex items-center">
                       <span className="mr-1">🚚</span>
                       ENVÍO GRATIS
@@ -203,20 +208,20 @@ export default function Home() {
 
                 <div className="p-4">
                   <h3 className="font-semibold text-gray-800 mb-2 text-sm">
-                    {hat.name}
+                    {gorra.name}
                   </h3>
-
+                  
                   <div className="flex items-center mb-3">
-                    {hat.originalPrice && (
+                    {gorra.originalPrice && (
                       <span className="text-gray-400 line-through text-sm mr-2">
-                        ${hat.originalPrice.toLocaleString()}
+                        ${gorra.originalPrice.toLocaleString()}
                       </span>
                     )}
                     <span className="text-lg font-bold text-black">
-                      ${hat.price.toLocaleString()}
+                      ${gorra.price.toLocaleString()}
                     </span>
                   </div>
-
+                  
                   <button className="w-full bg-blue-600 text-white py-2 px-4 rounded font-medium hover:bg-blue-700 transition-colors">
                     Agregar al carrito
                   </button>
@@ -227,37 +232,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Additional Products Grid */}
-      <section className="py-8 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Placeholder for additional products */}
-            <div className="bg-gray-100 rounded-lg p-4 text-center">
-              <div className="aspect-square bg-gray-200 rounded-lg mb-3"></div>
-              <h3 className="font-semibold text-gray-800 mb-2">
-                Más productos próximamente
-              </h3>
-              <p className="text-sm text-gray-600">
-                Explora toda nuestra colección
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Newsletter Section */}
       <section className="bg-gray-800 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">
-            ¡No te pierdas nuestros nuevos lanzamientos!
-          </h3>
-          <p className="text-gray-300 mb-6">
-            Suscríbete a nuestro newsletter y recibe descuentos exclusivos
-          </p>
+          <h3 className="text-2xl font-bold mb-4">¡No te pierdas nuestros nuevos lanzamientos!</h3>
+          <p className="text-gray-300 mb-6">Suscríbete a nuestro newsletter y recibe descuentos exclusivos</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Tu email"
+            <input 
+              type="email" 
+              placeholder="Tu email" 
               className="flex-1 px-4 py-2 rounded text-white-900"
             />
             <button className="bg-blue-600 text-white px-6 py-2 rounded font-medium hover:bg-blue-700 transition-colors">
@@ -267,7 +250,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WhatsApp Float Button + Chat */}
+       {/* WhatsApp Float Button + Chat */}
       <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end">
         {/* Chat desplegable */}
         {showChat && (
